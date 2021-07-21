@@ -102,6 +102,7 @@
 
     ::slotted([slot='footer']) {
       margin-top: $carbon--layout-04;
+      max-width: rem(320px);
 
       @include carbon--breakpoint('md') {
         width: 50%;

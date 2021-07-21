@@ -116,15 +116,20 @@ export default {
   title: 'Components/Content block cards',
   decorators: [
     story => html`
-      <dds-video-cta-container class="dds-ce-demo-devenv--simple-grid dds-ce-demo-devenv--simple-grid--content-block-cards">
-        ${story()}
-      </dds-video-cta-container>
+      <div class="bx--grid">
+        <div class="bx--row">
+          <div class="bx--col-sm-4 bx--col-lg-12 bx--offset-lg-4 content-block-story">
+            <dds-video-cta-container>
+              ${story()}
+            </dds-video-cta-container>
+          </div>
+        </div>
+      </div>
     `,
   ],
   parameters: {
     ...readme.parameters,
-    hasGrid: true,
-    hasVerticalSpacingInComponent: true,
+    useRawContainer: true,
     knobs: {
       ContentBlockCards: () => ({
         heading: textNullable('Heading (heading):', 'Aliquam condimentum interdum'),

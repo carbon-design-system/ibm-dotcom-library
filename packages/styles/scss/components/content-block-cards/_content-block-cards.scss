@@ -42,8 +42,20 @@
 
   :host(#{$dds-prefix}-content-block-cards) .#{$prefix}--content-block__cta,
   .#{$prefix}--content-block-cards .#{$prefix}--content-block__cta {
-    @include carbon--breakpoint('lg') {
-      @include carbon--make-col(4, 12);
+    @include carbon--make-col-ready;
+
+    padding: 0;
+
+    .#{$prefix}--card {
+      @include carbon--make-col(4, 4);
+
+      @include carbon--breakpoint('lg') {
+        @include carbon--make-col(8, 12);
+      }
+
+      @include carbon--breakpoint('xlg') {
+        max-width: rem(320px);
+      }
     }
   }
 
@@ -53,7 +65,6 @@
 
   .#{$prefix}--content-block-cards__content {
     .#{$prefix}--card__CTA {
-      max-width: none;
       margin: 0;
     }
   }
