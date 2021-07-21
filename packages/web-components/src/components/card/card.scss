@@ -6,6 +6,8 @@
 //
 
 @import '@carbon/ibmdotcom-styles/scss/components/card/index';
+@import '../../../../styles/scss/components/card/index';
+
 @import '@carbon/ibmdotcom-styles/scss/components/link-with-icon/link-with-icon';
 
 :host(#{$dds-prefix}-card-footer),
@@ -30,11 +32,6 @@
 :host(#{$dds-prefix}-card-cta),
 :host(#{$dds-prefix}-card) {
   outline: none;
-
-  // TODO: remove once Card component matches react
-  .#{$prefix}--card:focus {
-    outline: 2px solid $focus;
-  }
 
   .#{$prefix}--card__pictogram {
     display: flex;

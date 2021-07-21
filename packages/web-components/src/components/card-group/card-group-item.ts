@@ -21,6 +21,12 @@ const { stablePrefix: ddsPrefix } = ddsSettings;
  */
 @customElement(`${ddsPrefix}-card-group-item`)
 class DDSCardGroupItem extends DDSCardCTA {
+
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    // @ts-ignore
+    const footer = this.querySelector((this.constructor as typeof DDSCardGroupItem).selectorFooter);
+  }
   /**
    * `true` if the card group is using border.
    */
@@ -35,6 +41,13 @@ class DDSCardGroupItem extends DDSCardCTA {
 
   static get stableSelector() {
     return `${ddsPrefix}--card-group-item`;
+  }
+
+  /**
+   * A selector that will return the child footer.
+   */
+  static get selectorFooter() {
+    return `${ddsPrefix}-card-cta-footer`;
   }
 
   static styles = styles;

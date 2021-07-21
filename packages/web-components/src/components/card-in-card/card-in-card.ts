@@ -42,13 +42,13 @@ class DDSCardInCard extends StableSelectorMixin(DDSCardCTA) {
     `;
   }
 
-  render() {
-    return html`
-      <div class="${prefix}--card-in-card__container">
-        ${super.render()}
-      </div>
-    `;
-  }
+  // render() {
+  //   return html`
+  //     <div class="${prefix}--card-in-card__container">
+  //       ${super.render()}
+  //     </div>
+  //   `;
+  // }
 
   updated(changedProperties) {
     super.updated(changedProperties);
@@ -56,6 +56,10 @@ class DDSCardInCard extends StableSelectorMixin(DDSCardCTA) {
     if (linkNode) {
       linkNode.classList.add(`${prefix}--card-in-card`);
     }
+    this.onclick = () =>
+      this.querySelector('dds-card-cta-footer')
+        ?.shadowRoot?.querySelector(`a`)
+        ?.click();
   }
 
   static get stableSelector() {

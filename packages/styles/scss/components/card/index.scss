@@ -161,6 +161,10 @@
   :host(#{$dds-prefix}-card),
   :host(#{$dds-prefix}-card-group-item) {
     &:not([href]) {
+      &:focus-within,.#{$prefix}--card:focus-within  {
+        outline: none;
+      }
+
       &,
       &:hover {
         .#{$prefix}--card__wrapper {
@@ -242,18 +246,38 @@
     color: $disabled-02;
   }
 
-  .#{$prefix}--card .#{$prefix}--card__footer,
   :host(#{$dds-prefix}-card-footer),
-  :host(#{$dds-prefix}-card-cta-footer),
-  :host(#{$dds-prefix}-card-in-card-footer),
-  :host(#{$dds-prefix}-feature-card-footer),
+  :host(#{$dds-prefix}-card-cta-footer) ,
+  :host(#{$dds-prefix}-card-in-card-footer) ,
+  :host(#{$dds-prefix}-feature-card-footer) ,
   :host(#{$dds-prefix}-feature-cta-footer) {
+    margin-top: auto;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .#{$prefix}--card .#{$prefix}--card__footer,
+  :host(#{$dds-prefix}-card-footer) a,
+  :host(#{$dds-prefix}-card-cta-footer) a,
+  :host(#{$dds-prefix}-card-in-card-footer) a,
+  :host(#{$dds-prefix}-feature-card-footer) a,
+  :host(#{$dds-prefix}-feature-cta-footer) a {
     /* Moves the footer down to the bottom in the card */
     margin-top: auto;
     text-decoration: none;
 
     &:focus {
       outline: none;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    span {
+      flex: none;
     }
 
     &::after {
@@ -280,6 +304,18 @@
     ::slotted(svg[slot='icon']) {
       display: block;
       min-width: 20px;
+      margin-left: 0;
+    }
+  }
+
+  :host(#{$dds-prefix}-card-footer):not([parent-href]){
+    .#{$prefix}--card__footer {
+      &::after {
+        content: none;
+      }
+      &:focus {
+        outline: 2px solid $focus;
+      }
     }
   }
 

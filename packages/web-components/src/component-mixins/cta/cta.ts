@@ -32,6 +32,14 @@ export const icons = {
   [CTA_TYPE.VIDEO]: PlayOutline20,
 };
 
+export const ariaLabels = {
+  [CTA_TYPE.LOCAL]: '',
+  [CTA_TYPE.DOWNLOAD]: ' - This link downloads a file',
+  [CTA_TYPE.EXTERNAL]: ' - This link opens in a new tab',
+  [CTA_TYPE.JUMP]: '',
+  [CTA_TYPE.VIDEO]: ' - This link plays a video',
+};
+
 /**
  * @param Base The base class.
  * @returns A mix-in implementing the logic of handling link for CTA.
@@ -109,7 +117,7 @@ const CTAMixin = <T extends Constructor<HTMLElement>>(Base: T) => {
         }
       }
       // TODO: See why `linkNode` can possibly be `null`
-      if (linkNode) {
+      if (linkNode && linkNode.nodeName === 'A') {
         if (changedProperties.has('ctaType') || changedProperties.has('href')) {
           const { href } = this;
           const hrefValue = ctaType !== CTA_TYPE.VIDEO ? href : '#';
@@ -129,6 +137,9 @@ const CTAMixin = <T extends Constructor<HTMLElement>>(Base: T) => {
           } else {
             linkNode.setAttribute('target', targetInEffect);
           }
+        }
+        if(linkNode.hasAttribute('aria-label')){
+          linkNode.setAttribute('aria-label', linkNode.getAttribute('aria-label') + (ctaType ? ariaLabels[ctaType] : ''))
         }
       }
     }

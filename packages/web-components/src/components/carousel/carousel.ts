@@ -151,7 +151,7 @@ class DDSCarousel extends HostListenerMixin(StableSelectorMixin(LitElement)) {
   private _handleFocus = async ({ target, relatedTarget }: FocusEvent) => {
     const currentContains = target !== this && this.contains(target as DDSCard);
     const oldNotContains = target !== this && !this.contains(relatedTarget as DDSCard);
-    const currentCardIndex = Array.from(this.children).indexOf(target as HTMLElement);
+    const currentCardIndex = Array.from(this.children).indexOf((target as HTMLElement).parentElement!);
 
     // Confirmed by design team; ensures the carousel remains on the current page when focusing back on the component.
     // This conforms to the natural flow of the current content on the screen.

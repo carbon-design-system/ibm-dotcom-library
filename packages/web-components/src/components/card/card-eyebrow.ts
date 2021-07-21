@@ -26,12 +26,6 @@ class DDSCardEyebrow extends StableSelectorMixin(LitElement) {
   @property({ reflect: true })
   slot = 'eyebrow';
 
-  updated() {
-    if (!this.hasAttribute('aria-hidden')) {
-      this.setAttribute('aria-hidden', 'true');
-    }
-  }
-
   render() {
     return html`
       <slot></slot>

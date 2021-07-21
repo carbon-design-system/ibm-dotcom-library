@@ -9,6 +9,7 @@
 @import '@carbon/ibmdotcom-styles/scss/globals/vars';
 @import '@carbon/ibmdotcom-styles/scss/components/card/index';
 @import '@carbon/ibmdotcom-styles/scss/components/feature-section/feature-section';
+@import '../../../../styles/scss/components/feature-section/feature-section';
 
 :host(#{$dds-prefix}-feature-section) {
   display: block;

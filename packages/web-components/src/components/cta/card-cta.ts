@@ -26,6 +26,7 @@ import './card-cta-footer';
 /* eslint-enable import/no-duplicates */
 import { CTA_TYPE } from './defs';
 import styles from './cta.scss';
+import DDSCardFooter from "../card/card-footer";
 
 export { CTA_TYPE };
 
@@ -104,7 +105,7 @@ class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCard)) {
 
   updated(changedProperties) {
     super.updated(changedProperties);
-    const { selectorFooter } = this.constructor as typeof DDSCardCTA;
+    const footer = this.querySelector((this.constructor as typeof DDSCardCTA).selectorFooter);
     if (
       changedProperties.has('ctaType') ||
       changedProperties.has('formatCaption') ||
@@ -114,11 +115,15 @@ class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCard)) {
       const {
         ctaType,
         videoDuration,
+        videoName,
         formatVideoCaption: formatVideoCaptionInEffect,
         formatVideoDuration: formatVideoDurationInEffect,
       } = this;
-      const footer = this.querySelector(selectorFooter);
+      const headingText = this.querySelector(`dds-card-heading`)?.textContent;
+      const copyText = this.textContent;
       if (footer) {
+
+        (footer as DDSCardFooter).altAriaLabel = videoName ? videoName : headingText ? headingText : copyText;
         (footer as DDSCardCTAFooter).ctaType = ctaType;
         (footer as DDSCardCTAFooter).videoDuration = videoDuration;
         if (formatVideoCaptionInEffect) {

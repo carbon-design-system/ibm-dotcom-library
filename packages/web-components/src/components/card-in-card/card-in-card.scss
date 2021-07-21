@@ -9,6 +9,7 @@
 @import '@carbon/ibmdotcom-styles/scss/globals/vars';
 @import '../card/card';
 @import '@carbon/ibmdotcom-styles/scss/components/card-in-card/card-in-card';
+@import '../../../../styles/scss/components/card-in-card/card-in-card';
 
 :host(#{$dds-prefix}-card-in-card) {
   display: block;

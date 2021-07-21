@@ -9,3 +9,4 @@
 
 import './card-in-card';
 import './card-in-card-image';
+import '../cta/card-cta-footer';

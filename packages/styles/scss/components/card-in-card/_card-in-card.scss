@@ -18,8 +18,14 @@
   .#{$prefix}--card-in-card {
     height: auto;
 
-    &:focus {
-      outline: none;
+    &:focus-within {
+      z-index: 0;
+      outline: 2px solid $focus;
+      outline-offset: -2px;
+    }
+
+    .#{$prefix}--card:focus-within {
+      z-index: -1;
     }
 
     &:hover {

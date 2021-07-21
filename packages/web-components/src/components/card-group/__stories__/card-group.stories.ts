@@ -49,9 +49,9 @@ const cardsDiffLengthPhrase = (index, border) => {
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et ultricies est.'
       </p>
-      <dds-card-footer slot="footer">
+      <dds-card-cta-footer slot="footer">
         ${ArrowRight20({ slot: 'icon' })}
-      </dds-card-footer>
+      </dds-card-cta-footer>
     </dds-card-group-item>
   `;
 
@@ -67,9 +67,9 @@ const longHeadingCardGroupItem = border => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et ultricies est. Mauris iaculis eget dolor nec hendrerit.
         Phasellus at elit sollicitudin, sodales nulla quis, consequat libero.
       </p>
-      <dds-card-footer slot="footer">
+      <dds-card-cta-footer slot="footer">
         ${ArrowRight20({ slot: 'icon' })}
-      </dds-card-footer>
+      </dds-card-cta-footer>
     </dds-card-group-item>
   `;
 };
@@ -83,9 +83,9 @@ const cardGroupItemWithImages = html`
     <dds-card-cta-image slot="image" alt="Image alt text" default-src="${imgXlg4x3}"> </dds-card-cta-image>
     <dds-card-eyebrow>Topic</dds-card-eyebrow>
     <dds-card-heading>Natural Language Processing.</dds-card-heading>
-    <dds-card-footer slot="footer">
+    <dds-card-cta-footer slot="footer">
       ${ArrowRight20({ slot: 'icon' })}
-    </dds-card-footer>
+    </dds-card-cta-footer>
   </dds-card-group-item>
 `;
 
@@ -100,9 +100,9 @@ const cardGroupItemWithCTAs = html`
   <dds-card-group-item href="https://example.com">
     <dds-card-eyebrow>Label</dds-card-eyebrow>
     <dds-card-heading>The United Nations Environment Program works with IBM to reduce marine litter</dds-card-heading>
-    <dds-card-footer slot="footer">
+    <dds-card-cta-footer slot="footer">
       ${ArrowRight20({ slot: 'icon' })}
-    </dds-card-footer>
+    </dds-card-cta-footer>
   </dds-card-group-item>
 `;
 
@@ -140,9 +140,9 @@ export const withCTA = ({ parameters }) => {
       ${cards}
       <dds-card-group-item href="https://example.com" color-scheme="inverse">
         <dds-card-heading>Top level card link</dds-card-heading>
-        <dds-card-footer slot="footer" color-scheme="inverse">
+        <dds-card-cta-footer slot="footer" color-scheme="inverse">
           ${ArrowRight20({ slot: 'icon' })}
-        </dds-card-footer>
+        </dds-card-cta-footer>
       </dds-card-group-item>
     </dds-card-group>
   `;

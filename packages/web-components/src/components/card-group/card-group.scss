@@ -11,6 +11,7 @@
 @import '@carbon/ibmdotcom-styles/scss/globals/vars';
 @import '@carbon/ibmdotcom-styles/scss/globals/imports';
 @import '@carbon/ibmdotcom-styles/scss/components/card-group/card-group';
+@import '../../../../styles/scss/components/card-group/card-group';
 
 :host(#{$dds-prefix}-card-group) {
   background: none;

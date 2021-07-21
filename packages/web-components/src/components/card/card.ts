@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { html, property, internalProperty, customElement, TemplateResult } from 'lit-element';
+import { html, property, internalProperty, customElement, TemplateResult, query } from 'lit-element';
 import settings from 'carbon-components/es/globals/js/settings';
 import ddsSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings.js';
 import BXLink from 'carbon-web-components/es/components/link/link';
@@ -188,14 +188,21 @@ class DDSCard extends StableSelectorMixin(BXLink) {
     });
   }
 
+  @query('div')
+  protected _linkNode?: HTMLDivElement | HTMLParagraphElement;
+
   updated(changedProperties) {
     super.updated(changedProperties);
     const { colorScheme, href, _linkNode: linkNode } = this;
     if (changedProperties.has('colorScheme') || changedProperties.has('href')) {
+      const headingText = this.querySelector(`dds-card-heading`)?.textContent;
+      const copyText = this.textContent;
       const footer = this.querySelector((this.constructor as typeof DDSCard).selectorFooter);
-      if (footer) {
+      if (footer && href) {
         (footer as DDSCardFooter).colorScheme = colorScheme;
         (footer as DDSCardFooter).parentHref = href;
+        (footer as DDSCardFooter).href = href;
+        (footer as DDSCardFooter).altAriaLabel = headingText || copyText;
       }
     }
     if (linkNode) {
@@ -205,11 +212,20 @@ class DDSCard extends StableSelectorMixin(BXLink) {
       linkNode.classList.toggle(`${prefix}--card--link`, Boolean(href));
       linkNode.classList.toggle(`${prefix}--card--inverse`, colorScheme === BASIC_COLOR_SCHEME.INVERSE);
     }
+
+    if (this._hasPictogram) {
+      this.onclick = () => window.open(this.href, '_self');
+    }
   }
 
   render() {
-    const { href } = this;
-    return !href ? this._renderInner() : super.render();
+    return this._hasPictogram
+      ? html`
+          <div tabindex="0" aria-label="${this.querySelector(`dds-card-heading`)?.textContent}">${this._renderInner()}</div>
+        `
+      : html`
+          <div>${this._renderInner()}</div>
+      `;
   }
 
   static get stableSelector() {
