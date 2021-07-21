@@ -18,6 +18,7 @@ const { mkdirSync, track } = require('temp');
 program
   .option('-C, --skip-clean', 'Skips cleaning build folders')
   .option('-P, --skip-packages', 'Skips the local package setup')
+  .option('-D, --skip-dist', 'Skips the local dist components build')
   .option('-E, --skip-examples', 'Skips the local examples setup');
 program.parse();
 
@@ -149,6 +150,38 @@ function _setupPackages() {
 }
 
 /**
+ * Copies the CDN folder to the web test folder
+ *
+ * @private
+ */
+function _copyCDN() {
+  log(chalk.yellow('Copying CDN packages to the web folder...'));
+  execSync(`mkdir "${_distFolder}/cdn"`);
+  execSync(`cp -a "${_projectRoot}/dist/." "${_distFolder}/cdn"`);
+}
+
+/**
+ * Builds the CDN artifacts
+ *
+ * @private
+ */
+function _buildDist() {
+  if (!_opts.skipDist) {
+    log(chalk.yellow('Building CDN artifacts...'));
+
+    execSync('yarn build:components', {
+      cwd: _projectRoot,
+      stdio: 'inherit',
+    });
+
+    execSync('yarn build:sass:cdn', {
+      cwd: _projectRoot,
+      stdio: 'inherit',
+    });
+  }
+}
+
+/**
  * Builds then copies the dist folder to the final location
  *
  * @private
@@ -156,12 +189,12 @@ function _setupPackages() {
 function _buildExamples() {
   log(chalk.yellow('Installing all examples...'));
   // need to install twice for some reason, need to look into this
-  execSync('yarn install', {
+  execSync('yarn install --network-timeout 100000', {
     cwd: _exampleBuild,
     stdio: 'inherit',
   });
 
-  execSync('yarn cache clean && yarn install', {
+  execSync('yarn cache clean && yarn install --network-timeout 100000', {
     cwd: _exampleBuild,
     stdio: 'inherit',
   });
@@ -173,6 +206,14 @@ function _buildExamples() {
       cwd: `${_exampleBuild}/components/${example}`,
       stdio: 'inherit',
     });
+
+    // replace the CDN artifact before it's moved
+    const contents = fs.readFileSync(`${_exampleBuild}/components/${example}/dist/cdn.html`, 'utf8');
+    const contentsFinal = contents.replace(
+      /https?:.\/1.www.s81c.com\/common\/carbon-for-ibm-dotcom\/tag\/v1\/canary\//g,
+      '../cdn/'
+    );
+    fs.writeFileSync(`${_exampleBuild}/components/${example}/dist/cdn.html`, contentsFinal);
 
     // Copying dist output
     log(chalk.green(`Copying ${example} to dist...`));
@@ -252,7 +293,14 @@ function build() {
   log(chalk.yellow(`Temporary examples directory created: ${_exampleBuild}`));
   _copyExamples();
 
+  // Create the dynamic index root file
   _createIndex();
+
+  // Builds the CDN artifacts
+  _buildDist();
+
+  // Copies the local CDN packages to the web test folder
+  _copyCDN();
 
   _examples.forEach(example => {
     log(chalk.green(`Replacing dependencies for ${example} and installing`));
