@@ -156,8 +156,10 @@
 
   :host(#{$dds-prefix}-content-block-horizontal) #{$dds-prefix}-hr,
   .#{$prefix}--content-block .#{$prefix}--hr {
-    margin-top: 0;
+    margin: 0;
+  }
 
+  .#{$prefix}--content-block .#{$prefix}--hr {
     @include hang;
   }
 

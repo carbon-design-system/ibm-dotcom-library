@@ -75,6 +75,10 @@
     }
   }
 
+  .#{$prefix}--link-list__list--vertical {
+    grid-auto-rows: auto;
+  }
+
   .#{$prefix}--link-list__list--card,
   .#{$dds-prefix}-ce--link-list__list--end {
     ::slotted(#{$dds-prefix}-link-list-item),

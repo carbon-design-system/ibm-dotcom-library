@@ -10,23 +10,28 @@
 @import '../content-block-horizontal/content-block-horizontal';
 
 @mixin content-group-horizontal {
-  .#{$prefix}--content-group-horizontal {
-    .#{$prefix}--content-item-horizontal__item:last-child {
-      @include carbon--breakpoint('max') {
-        padding-bottom: $layout-07;
-      }
-      @include carbon--breakpoint('lg') {
-        padding-bottom: $layout-07;
-      }
-      @include carbon--breakpoint('md') {
-        padding-bottom: $layout-06;
-      }
-      @include carbon--breakpoint('sm') {
-        padding-bottom: $layout-05;
-      }
+  :host(#{$dds-prefix}-content-group-horizontal) ::slotted([slot='heading']),
+  .#{$prefix}--content-group-horizontal .#{$prefix}--content-block__heading {
+    margin-bottom: $layout-05;
+    @include carbon--breakpoint('lg') {
+      margin-bottom: $layout-03;
     }
-    .#{$prefix}--content-block {
-      padding-bottom: 0;
+  }
+
+  :host(#{$dds-prefix}-content-item-horizontal):last-child,
+  .#{$prefix}--content-group-horizontal
+    .#{$prefix}--content-item-horizontal__item:last-child {
+    @include carbon--breakpoint('max') {
+      padding-bottom: $layout-07;
+    }
+    @include carbon--breakpoint('lg') {
+      padding-bottom: $layout-07;
+    }
+    @include carbon--breakpoint('md') {
+      padding-bottom: $layout-06;
+    }
+    @include carbon--breakpoint('sm') {
+      padding-bottom: $layout-05;
     }
   }
 }

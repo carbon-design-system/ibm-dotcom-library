@@ -86,6 +86,7 @@ html {
 .dds-ce-demo-devenv--simple-grid--tabs-extended,
 .dds-ce-demo-devenv--simple-grid--content-layout,
 .dds-ce-demo-devenv--simple-grid--content-layout--with-complementary,
+.dds-ce-demo-devenv--simple-grid--content-block-horizontal,
 .dds-ce-demo-devenv--simple-grid--content-block-headlines,
 .dds-ce-demo-devenv--simple-grid--content-section,
 .dds-ce-demo-devenv--simple-grid--content-block-cards,
@@ -114,6 +115,7 @@ html {
   .dds-ce-demo-devenv--simple-grid--tabs-extended,
   .dds-ce-demo-devenv--simple-grid--content-layout,
   .dds-ce-demo-devenv--simple-grid--content-layout--with-complementary,
+  .dds-ce-demo-devenv--simple-grid--content-block-horizontal,
   .dds-ce-demo-devenv--simple-grid--content-section,
   .dds-ce-demo-devenv--simple-grid--logo-grid,
   .dds-ce-demo-devenv--simple-grid--card-in-card {
@@ -136,6 +138,12 @@ html {
   .dds-ce-demo-devenv--simple-grid--content-horizontal {
     > * {
       grid-column: 5 / span 10;
+    }
+  }
+
+  .dds-ce-demo-devenv--simple-grid--content-block-horizontal {
+    > * {
+      grid-column: 5 / span 12;
     }
   }
 

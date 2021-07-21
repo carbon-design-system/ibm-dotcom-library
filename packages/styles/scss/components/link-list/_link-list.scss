@@ -124,6 +124,20 @@
         margin-bottom: 0;
       }
     }
+
+    ::slotted(#{$dds-prefix}-link-list-item-cta:last-of-type) {
+      margin-bottom: 0;
+    }
+  }
+
+  .#{$prefix}--content-item-horizontal__item--cta {
+    .#{$prefix}--link-list li {
+      &:last-of-type {
+        @include carbon--breakpoint('lg') {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 
   .#{$prefix}--link-list__list--vertical-end {

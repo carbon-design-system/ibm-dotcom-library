@@ -9,14 +9,23 @@
 @import '../content-item-horizontal/content-item-horizontal';
 
 @mixin content-block-horizontal {
+  :host(#{$dds-prefix}-content-block-horizontal) > *,
+  :host(#{$dds-prefix}-content-group-horizontal) > *,
+  .#{$prefix}--content-block-horizontal .#{$prefix}--content-block > *,
+  .#{$prefix}--content-group-horizontal .#{$prefix}--content-block > * {
+    @include carbon--breakpoint('lg') {
+      padding-right: 16.75%;
+    }
+  }
   :host(#{$dds-prefix}-content-block-horizontal) ::slotted([slot='heading']),
   :host(#{$dds-prefix}-content-group-horizontal) ::slotted([slot='heading']),
   .#{$prefix}--content-block-horizontal .#{$prefix}--content-block__heading {
     margin-bottom: $layout-05;
     @include carbon--breakpoint('lg') {
-      margin-bottom: $layout-06;
+      margin-bottom: $layout-03;
     }
   }
+
   :host(#{$dds-prefix}-content-item-horizontal):last-child,
   .#{$prefix}--content-block-horizontal
     .#{$prefix}--content-item-horizontal__item:last-child {

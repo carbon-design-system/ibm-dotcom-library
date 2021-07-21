@@ -47,7 +47,7 @@ export default {
   title: 'Components/Content block horizontal',
   decorators: [
     story => html`
-      <div class="dds-ce-demo-devenv--simple-grid dds-ce-demo-devenv--simple-grid--content-horizontal">
+      <div class="dds-ce-demo-devenv--simple-grid dds-ce-demo-devenv--simple-grid--content-block-horizontal">
         ${story()}
       </div>
     `,
